@@ -1,7 +1,9 @@
 {
     "name": "longkyanh/laravel-optivo",
     "description": "Optivo Mail Client for Laravel",
-	"keywords": ["laravel", "optivo mail client", "mailer"],    
+	"keywords": ["laravel", "optivo mail client", "mailer"],
+    "license": "MIT",
+    "homepage": "https://github.com/nguyentienlong/laravel-optivo",
     "require": {
         "guzzlehttp/guzzle": "^6.1",
         "illuminate/support": "4.*|5.*"
