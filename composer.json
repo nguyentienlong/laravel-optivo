@@ -1,0 +1,20 @@
+{
+    "name": "longkyanh/laravel-optivo",
+    "description": "Optivo Mail Client for Laravel",
+	"keywords": ["laravel", "optivo mail client", "mailer"],    
+    "require": {
+        "guzzlehttp/guzzle": "^6.1",
+        "illuminate/support": "4.*|5.*"
+    },
+    "authors": [
+        {
+            "name": "long nguyen",
+            "email": "nguyentienlong88@gmail.com"
+        }
+    ],
+	"autoload": {
+		"psr-4" : {
+			"Longkyanh\\Mailer\\": "src"
+		}
+	}
+}
