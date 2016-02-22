@@ -26,7 +26,7 @@ class OptivoServiceProvider extends IlluminateServiceProvider
     */
     public function register()
     {
-        $this->$app->singleton('optivo-mailer', function($app) {
+        $this->app->singleton('optivo-mailer', function($app) {
             $config = isset($app['config']['optivo'])? $app['config']['optivo'] : null;
             if (is_null($config)) {
                 $config = $app['config']['optivo::config'];
