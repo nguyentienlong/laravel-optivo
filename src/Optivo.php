@@ -4,6 +4,7 @@ namespace Longkyanh\Mailer;
 
 use Exception;
 use GuzzleHttp\Client;
+use Illuminate\Contracts\Config\Repository as ConfigRepository;
 
 /**
  * @author Long Nguyen <nguyentienlong88@gmail.com>
@@ -16,7 +17,7 @@ class Optivo
     protected $client;
 
     /**
-     * @var array Optivo Configuration Array.
+     * @var ConfigRepository Optivo Configuration.
      */
     protected $config;
 
@@ -28,13 +29,14 @@ class Optivo
     /**
      * Contructor.
      *
-     * @param array $config Optivo Configuration Array.
+     * @param Client $client
+     * @param ConfigRepository $config Optivo Configuration Array.
      */
-    public function __construct($config)
+    public function __construct(Client $client, ConfigRepository $config)
     {
-        $this->client = new Client();
+        $this->client = $client;
         $this->config = $config;
-        $this->url = $config['domain'];
+        $this->url = $this->config->get('optivo.domain');
     }
 
     /**
@@ -49,7 +51,7 @@ class Optivo
      */
     public function send(string $mailingListName, string $locale, string $recipient, array $data) : array
     {
-        $mailListConfig = $config['mailing-list'][$mailingListName];
+        $mailListConfig = $this->config->get('optivo.mailing-list')[$mailingListName];
         //Check whether required params in optivo config file is matched with key in $data
         $requiredParams = $mailListConfig['required-params'];
         $this->validateData($requiredParams, $data);

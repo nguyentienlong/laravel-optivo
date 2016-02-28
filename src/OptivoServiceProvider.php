@@ -3,6 +3,7 @@
 namespace Longkyanh\Mailer;
 
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
+use GuzzleHttp\Client;
 
 /**
  * @author Long Nguyen <nguyentienlong88@gmail.com>
@@ -21,11 +22,9 @@ class OptivoServiceProvider extends IlluminateServiceProvider
      */
     public function register()
     {
-        $config = $this->app['config']->get('optivo');
-
-        $this->app->bind('Longkyanh\Mailer\Optivo', function ($app) {
-
-            return new Optivo($config);
+        //only need when using facade
+        $this->app->singleton('optivo', function ($app) {
+            return new Optivo(new Client(), $app['config']);
         });
     }
 
